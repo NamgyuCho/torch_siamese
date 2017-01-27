@@ -26,4 +26,11 @@ function build_model(libs)
     -- The siamese model (inputs will be Tensors of shape (2, channel, height, width))
     model = nn.Sequential()
     model:add(nn.SplitTable(1))
+    model:add(siamese_encoder)
+    model:add(nn.PairwiseDistance(2))
+
+    margin = 1
+    criterion = nn.HingeEmbeddingCriterion(margin)
+
+    return model
 end

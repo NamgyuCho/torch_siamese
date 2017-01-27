@@ -26,6 +26,7 @@ cmd:option("-batch_size", 50, "batch size")
 cmd:option("-learning_rate", 0.001, "learning_rate")
 cmd:option("-momentum", 0.9, "momentum")
 cmd:option("-snapshot_dir", "./snapshot/", "snapshot directory")
+cmd:option("-snapshot_epoch", 0, "snapshot after how many iterations?")
 cmd:option("-gpu", false, "use gpu")
 cmd:option("-weights", "", "pretrained model to begin training from")
 cmd:option("-log", "output log file")
@@ -73,106 +74,6 @@ if run_on_cuda then
     model = model:cuda()
 end
 
-
---------------------------libs = {}
-run_on_cuda = false
-if params.gpu then
-    print("using cudnn")
-    require 'cudnn'
-    libs['SpatialConvolution'] = cudnn.SpatialConvolution
-    libs['SpatialMaxPooling'] = cudnn.SpatialMaxPooling
-    libs['ReLU'] = cudnn.ReLU
-    torch.setdefaulttensortype('torch.CudaTensor')
-    run_on_cuda = true
-else
-    libs['SpatialConvolution'] = nn.SpatialConvolution
-    libs['SpatialMaxPooling'] = nn.SpatialMaxPooling
-    libs['ReLU'] = nn.ReLU
-    torch.setdefaulttensortype('torch.FloatTensor')
-end
-
-epoch = 0
-batch_size = params.batch_size
---Load model and criterion
-
-if params.weights ~= "" then
-    print("loading model from pretrained weights in file " .. params.weights)
-    model = torch.load(params.weights)
-else
-    model = build_model(libs)
-end
-
-if run_on_cuda then
-    model = model:cuda()
-end
-
-
---------------------------libs = {}
-run_on_cuda = false
-if params.gpu then
-    print("using cudnn")
-    require 'cudnn'
-    libs['SpatialConvolution'] = cudnn.SpatialConvolution
-    libs['SpatialMaxPooling'] = cudnn.SpatialMaxPooling
-    libs['ReLU'] = cudnn.ReLU
-    torch.setdefaulttensortype('torch.CudaTensor')
-    run_on_cuda = true
-else
-    libs['SpatialConvolution'] = nn.SpatialConvolution
-    libs['SpatialMaxPooling'] = nn.SpatialMaxPooling
-    libs['ReLU'] = nn.ReLU
-    torch.setdefaulttensortype('torch.FloatTensor')
-end
-
-epoch = 0
-batch_size = params.batch_size
---Load model and criterion
-
-if params.weights ~= "" then
-    print("loading model from pretrained weights in file " .. params.weights)
-    model = torch.load(params.weights)
-else
-    model = build_model(libs)
-end
-
-if run_on_cuda then
-    model = model:cuda()
-end
-
-
---------------------------libs = {}
-run_on_cuda = false
-if params.gpu then
-    print("using cudnn")
-    require 'cudnn'
-    libs['SpatialConvolution'] = cudnn.SpatialConvolution
-    libs['SpatialMaxPooling'] = cudnn.SpatialMaxPooling
-    libs['ReLU'] = cudnn.ReLU
-    torch.setdefaulttensortype('torch.CudaTensor')
-    run_on_cuda = true
-else
-    libs['SpatialConvolution'] = nn.SpatialConvolution
-    libs['SpatialMaxPooling'] = nn.SpatialMaxPooling
-    libs['ReLU'] = nn.ReLU
-    torch.setdefaulttensortype('torch.FloatTensor')
-end
-
-epoch = 0
-batch_size = params.batch_size
---Load model and criterion
-
-if params.weights ~= "" then
-    print("loading model from pretrained weights in file " .. params.weights)
-    model = torch.load(params.weights)
-else
-    model = build_model(libs)
-end
-
-if run_on_cuda then
-    model = model:cuda()
-end
-
-
 ------------------------------------------------------
 ------ Training Function
 ------------------------------------------------------
@@ -189,7 +90,7 @@ function train(data)
 
         if params.snapshot_epoch > 0 and (epoch % params.snapshot_epoch) == 0 then -- epoch is global
             local filename = paths.concat(params.snapshot_dir, "snapshot_epoch_" .. epoch .. ".net")
-            os.execute('mkdir -p' .. sys.dirname(filename))
+            os.execute('mkdir -p ' .. sys.dirname(filename))
             torch.save(filename, model)
 
             --must save std, mean and criteron?
@@ -270,6 +171,15 @@ end
 ----------------------------------------------
 ------ Training Function
 ----------------------------------------------
+
+---- For debuging
+--params.training_data = "./data/mnist.t7"
+--params.max_epochs = 10
+
 print("loading dataset...")
 mnist_dataset = mnist.load_siamese_dataset(params.training_data)
 print("dataset loaded")
+
+print("start training")
+train(mnist_dataset)
+print("train has finished")

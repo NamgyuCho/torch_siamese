@@ -1,0 +1,75 @@
+[program started on Wed Mar 15 10:01:34 2017] 
+[command line arguments] 
+gpu false 
+max_epochs 1000 
+seed 1 
+batch_size 50 
+dataset_size 3000 
+training_data ./data/train.t7 
+momentum 0.9 
+log outlog_CPU.log 
+threads 2 
+learning_rate 0.001 
+weights  
+snapshot_epoch 50 
+snapshot_dir ./snapshot 
+[----------------------] 
+2017-03-15 10:01:34[torch_benchmarks]:  setting log file as outlog_CPU.log 
+2017-03-15 10:01:34[torch_benchmarks]:  [0;31mLoad a new model 
+2017-03-15 10:01:35[torch_benchmarks]:  nn.Sequential {
+  [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> output]
+  (1): nn.SplitTable
+  (2): nn.ParallelTable {
+    input
+      |`-> (1): nn.Sequential {
+      |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> (10) -> (11) -> (12) -> (13) -> (14) -> (15) -> (16) -> output]
+      |      (1): nn.SpatialConvolution(3 -> 64, 3x3)
+      |      (2): nn.ReLU
+      |      (3): nn.SpatialConvolution(64 -> 64, 3x3)
+      |      (4): nn.ReLU
+      |      (5): nn.SpatialMaxPooling(2x2, 2,2)
+      |      (6): nn.SpatialConvolution(64 -> 128, 3x3)
+      |      (7): nn.ReLU
+      |      (8): nn.SpatialConvolution(128 -> 128, 3x3)
+      |      (9): nn.ReLU
+      |      (10): nn.SpatialMaxPooling(2x2, 2,2)
+      |      (11): nn.SpatialConvolution(128 -> 128, 3x3)
+      |      (12): nn.ReLU
+      |      (13): nn.SpatialConvolution(128 -> 128, 3x3)
+      |      (14): nn.ReLU
+      |      (15): nn.SpatialMaxPooling(2x2, 2,2)
+      |      (16): nn.View(28800)
+      |    }
+       `-> (2): nn.Sequential {
+             [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> (10) -> (11) -> (12) -> (13) -> (14) -> (15) -> (16) -> output]
+             (1): nn.SpatialConvolution(3 -> 64, 3x3)
+             (2): nn.ReLU
+             (3): nn.SpatialConvolution(64 -> 64, 3x3)
+             (4): nn.ReLU
+             (5): nn.SpatialMaxPooling(2x2, 2,2)
+             (6): nn.SpatialConvolution(64 -> 128, 3x3)
+             (7): nn.ReLU
+             (8): nn.SpatialConvolution(128 -> 128, 3x3)
+             (9): nn.ReLU
+             (10): nn.SpatialMaxPooling(2x2, 2,2)
+             (11): nn.SpatialConvolution(128 -> 128, 3x3)
+             (12): nn.ReLU
+             (13): nn.SpatialConvolution(128 -> 128, 3x3)
+             (14): nn.ReLU
+             (15): nn.SpatialMaxPooling(2x2, 2,2)
+             (16): nn.View(28800)
+           }
+       ... -> output
+  }
+  (3): nn.JoinTable
+  (4): nn.Linear(57600 -> 2048)
+  (5): nn.Dropout(0.500000)
+  (6): nn.Linear(2048 -> 8)
+} 
+2017-03-15 10:01:37[torch_benchmarks]:  [0;31m
+<Loading dataset...> 
+2017-03-15 10:01:41[torch_benchmarks]:  Use the subset of size: 3000 
+2017-03-15 10:01:55[torch_benchmarks]:  [0;31m<Dataset loaded> 
+2017-03-15 10:01:55[torch_benchmarks]:  table: 0x405ccbc8 
+2017-03-15 10:01:55[torch_benchmarks]:  [0;31m
+<Start training> 

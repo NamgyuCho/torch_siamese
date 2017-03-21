@@ -1,0 +1,308 @@
+[program started on Sun Mar 19 11:20:38 2017] 
+[command line arguments] 
+gpu true 
+max_epochs 1000 
+seed 1 
+batch_size 100 
+dataset_size 0 
+training_data ./data/train.t7 
+momentum 0.9 
+log outlog_GPU.log 
+threads 1 
+learning_rate 0.001 
+snapshot_epoch 200 
+weights ./snapshot/snapshot_epoch_2000_saved.net 
+snapshot_dir ./snapshot 
+criterion ./snapshot/_criterion.net 
+[----------------------] 
+2017-03-19 11:20:38[torch_benchmarks]:  setting log file as outlog_GPU.log 
+2017-03-19 11:20:38[torch_benchmarks]:  using cudnn 
+2017-03-19 11:20:39[torch_benchmarks]:  [0;31mloading model from pretrained weights in file ./snapshot/snapshot_epoch_2000_saved.net 
+2017-03-19 11:20:40[torch_benchmarks]:  [0;31mloading model criterion in file ./snapshot/_criterion.net 
+2017-03-19 11:20:40[torch_benchmarks]:  nn.Sequential {
+  [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> output]
+  (1): nn.SplitTable
+  (2): nn.ParallelTable {
+    input
+      |`-> (1): nn.Sequential {
+      |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> (10) -> (11) -> (12) -> (13) -> (14) -> (15) -> (16) -> (17) -> (18) -> (19) -> (20) -> (21) -> output]
+      |      (1): cudnn.SpatialConvolution(3 -> 64, 3x3)
+      |      (2): cudnn.ReLU
+      |      (3): cudnn.SpatialConvolution(64 -> 64, 3x3)
+      |      (4): cudnn.ReLU
+      |      (5): cudnn.SpatialMaxPooling(2x2, 2,2)
+      |      (6): cudnn.SpatialConvolution(64 -> 128, 3x3)
+      |      (7): cudnn.ReLU
+      |      (8): cudnn.SpatialConvolution(128 -> 128, 3x3)
+      |      (9): cudnn.ReLU
+      |      (10): cudnn.SpatialMaxPooling(2x2, 2,2)
+      |      (11): cudnn.SpatialConvolution(128 -> 128, 3x3)
+      |      (12): cudnn.ReLU
+      |      (13): cudnn.SpatialConvolution(128 -> 128, 3x3)
+      |      (14): cudnn.ReLU
+      |      (15): cudnn.SpatialMaxPooling(2x2, 2,2)
+      |      (16): cudnn.SpatialConvolution(128 -> 256, 3x3)
+      |      (17): cudnn.ReLU
+      |      (18): cudnn.SpatialConvolution(256 -> 256, 3x3)
+      |      (19): cudnn.ReLU
+      |      (20): cudnn.SpatialMaxPooling(2x2, 2,2)
+      |      (21): nn.View(57600)
+      |    }
+       `-> (2): nn.Sequential {
+             [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> (10) -> (11) -> (12) -> (13) -> (14) -> (15) -> (16) -> (17) -> (18) -> (19) -> (20) -> (21) -> output]
+             (1): cudnn.SpatialConvolution(3 -> 64, 3x3)
+             (2): cudnn.ReLU
+             (3): cudnn.SpatialConvolution(64 -> 64, 3x3)
+             (4): cudnn.ReLU
+             (5): cudnn.SpatialMaxPooling(2x2, 2,2)
+             (6): cudnn.SpatialConvolution(64 -> 128, 3x3)
+             (7): cudnn.ReLU
+             (8): cudnn.SpatialConvolution(128 -> 128, 3x3)
+             (9): cudnn.ReLU
+             (10): cudnn.SpatialMaxPooling(2x2, 2,2)
+             (11): cudnn.SpatialConvolution(128 -> 128, 3x3)
+             (12): cudnn.ReLU
+             (13): cudnn.SpatialConvolution(128 -> 128, 3x3)
+             (14): cudnn.ReLU
+             (15): cudnn.SpatialMaxPooling(2x2, 2,2)
+             (16): cudnn.SpatialConvolution(128 -> 256, 3x3)
+             (17): cudnn.ReLU
+             (18): cudnn.SpatialConvolution(256 -> 256, 3x3)
+             (19): cudnn.ReLU
+             (20): cudnn.SpatialMaxPooling(2x2, 2,2)
+             (21): nn.View(57600)
+           }
+       ... -> output
+  }
+  (3): nn.JoinTable
+  (4): nn.Linear(115200 -> 2048)
+  (5): nn.Dropout(0.500000)
+  (6): nn.Linear(2048 -> 8)
+} 
+2017-03-19 11:20:40[torch_benchmarks]:  nn.MSECriterion 
+2017-03-19 11:20:44[torch_benchmarks]:  [0;31m
+<Loading dataset...> 
+2017-03-19 11:25:07[torch_benchmarks]:  [0;31m<Dataset loaded> 
+2017-03-19 11:25:07[torch_benchmarks]:  table: 0x40fa7cf0 
+2017-03-19 11:25:07[torch_benchmarks]:  [0;31m
+<Start training> 
+2017-03-19 11:53:05[torch_benchmarks]:  Time taken for 1 epoch = 1677669.3828106ms, time taken to learn 1 sample = 50.556574940049ms 
+2017-03-19 11:53:05[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 1 = 0.179144 
+2017-03-19 12:21:02[torch_benchmarks]:  Time taken for 1 epoch = 1677002.4600029ms, time taken to learn 1 sample = 50.536477218024ms 
+2017-03-19 12:21:02[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 2 = 0.175295 
+2017-03-19 12:49:01[torch_benchmarks]:  Time taken for 1 epoch = 1679412.0929241ms, time taken to learn 1 sample = 50.609091517723ms 
+2017-03-19 12:49:01[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 3 = 0.171520 
+2017-03-19 13:17:01[torch_benchmarks]:  Time taken for 1 epoch = 1679869.7850704ms, time taken to learn 1 sample = 50.622884072759ms 
+2017-03-19 13:17:01[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 4 = 0.164738 
+2017-03-19 13:45:32[torch_benchmarks]:  Time taken for 1 epoch = 1711194.7450638ms, time taken to learn 1 sample = 51.566861893195ms 
+2017-03-19 13:45:32[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 5 = 0.162258 
+2017-03-19 14:14:59[torch_benchmarks]:  Time taken for 1 epoch = 1766948.5580921ms, time taken to learn 1 sample = 53.247003317626ms 
+2017-03-19 14:14:59[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 6 = 0.159088 
+2017-03-19 14:44:31[torch_benchmarks]:  Time taken for 1 epoch = 1771284.7080231ms, time taken to learn 1 sample = 53.377673216703ms 
+2017-03-19 14:44:31[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 7 = 0.157625 
+2017-03-19 15:14:04[torch_benchmarks]:  Time taken for 1 epoch = 1773017.1911716ms, time taken to learn 1 sample = 53.429881604739ms 
+2017-03-19 15:14:04[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 8 = 0.162853 
+2017-03-19 15:43:33[torch_benchmarks]:  Time taken for 1 epoch = 1769159.6188545ms, time taken to learn 1 sample = 53.313633644362ms 
+2017-03-19 15:43:33[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 9 = 0.152973 
+2017-03-19 16:13:02[torch_benchmarks]:  Time taken for 1 epoch = 1769530.1399231ms, time taken to learn 1 sample = 53.32479929855ms 
+2017-03-19 16:13:02[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 10 = 0.153230 
+2017-03-19 16:42:30[torch_benchmarks]:  Time taken for 1 epoch = 1767920.6130505ms, time taken to learn 1 sample = 53.276296198483ms 
+2017-03-19 16:42:30[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 11 = 0.154049 
+2017-03-19 17:12:00[torch_benchmarks]:  Time taken for 1 epoch = 1769346.3199139ms, time taken to learn 1 sample = 53.319259881686ms 
+2017-03-19 17:12:00[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 12 = 0.152531 
+2017-03-19 17:41:31[torch_benchmarks]:  Time taken for 1 epoch = 1770988.1701469ms, time taken to learn 1 sample = 53.368737046376ms 
+2017-03-19 17:41:31[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 13 = 0.148169 
+2017-03-19 18:11:03[torch_benchmarks]:  Time taken for 1 epoch = 1772142.6310539ms, time taken to learn 1 sample = 53.403526731374ms 
+2017-03-19 18:11:03[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 14 = 0.148274 
+2017-03-19 18:40:13[torch_benchmarks]:  Time taken for 1 epoch = 1749863.2409573ms, time taken to learn 1 sample = 52.732137203389ms 
+2017-03-19 18:40:13[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 15 = 0.153716 
+2017-03-19 19:08:48[torch_benchmarks]:  Time taken for 1 epoch = 1715461.9131088ms, time taken to learn 1 sample = 51.695453022807ms 
+2017-03-19 19:08:48[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 16 = 0.152431 
+2017-03-19 19:37:24[torch_benchmarks]:  Time taken for 1 epoch = 1716328.4649849ms, time taken to learn 1 sample = 51.72156656777ms 
+2017-03-19 19:37:24[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 17 = 0.147244 
+2017-03-19 20:06:55[torch_benchmarks]:  Time taken for 1 epoch = 1771003.7529469ms, time taken to learn 1 sample = 53.369206634126ms 
+2017-03-19 20:06:55[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 18 = 0.147453 
+2017-03-19 20:36:28[torch_benchmarks]:  Time taken for 1 epoch = 1773058.480978ms, time taken to learn 1 sample = 53.431125873253ms 
+2017-03-19 20:36:28[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 19 = 0.144801 
+2017-03-19 21:05:58[torch_benchmarks]:  Time taken for 1 epoch = 1769515.805006ms, time taken to learn 1 sample = 53.324367315755ms 
+2017-03-19 21:05:58[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 20 = 0.151591 
+2017-03-19 21:35:33[torch_benchmarks]:  Time taken for 1 epoch = 1774635.6959343ms, time taken to learn 1 sample = 53.478655253565ms 
+2017-03-19 21:35:33[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 21 = 0.147366 
+2017-03-19 22:05:02[torch_benchmarks]:  Time taken for 1 epoch = 1769074.985981ms, time taken to learn 1 sample = 53.31108323231ms 
+2017-03-19 22:05:02[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 22 = 0.147452 
+2017-03-19 22:34:36[torch_benchmarks]:  Time taken for 1 epoch = 1774257.363081ms, time taken to learn 1 sample = 53.467254191206ms 
+2017-03-19 22:34:36[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 23 = 0.155655 
+2017-03-19 23:04:04[torch_benchmarks]:  Time taken for 1 epoch = 1767795.4549789ms, time taken to learn 1 sample = 53.272524559394ms 
+2017-03-19 23:04:04[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 24 = 0.148596 
+2017-03-19 23:33:31[torch_benchmarks]:  Time taken for 1 epoch = 1767743.6540127ms, time taken to learn 1 sample = 53.270963537026ms 
+2017-03-19 23:33:31[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 25 = 0.150454 
+2017-03-20 00:03:01[torch_benchmarks]:  Time taken for 1 epoch = 1769288.4860039ms, time taken to learn 1 sample = 53.31751705653ms 
+2017-03-20 00:03:01[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 26 = 0.134378 
+2017-03-20 00:32:32[torch_benchmarks]:  Time taken for 1 epoch = 1771510.4279518ms, time taken to learn 1 sample = 53.384475287844ms 
+2017-03-20 00:32:32[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 27 = 0.147322 
+2017-03-20 01:01:12[torch_benchmarks]:  Time taken for 1 epoch = 1719668.4310436ms, time taken to learn 1 sample = 51.822216461054ms 
+2017-03-20 01:01:12[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 28 = 0.140867 
+2017-03-20 01:29:50[torch_benchmarks]:  Time taken for 1 epoch = 1718261.0981464ms, time taken to learn 1 sample = 51.779806477412ms 
+2017-03-20 01:29:50[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 29 = 0.136503 
+2017-03-20 01:58:37[torch_benchmarks]:  Time taken for 1 epoch = 1726619.1999912ms, time taken to learn 1 sample = 52.031677916804ms 
+2017-03-20 01:58:37[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 30 = 0.138898 
+2017-03-20 02:27:34[torch_benchmarks]:  Time taken for 1 epoch = 1737307.6488972ms, time taken to learn 1 sample = 52.35377437612ms 
+2017-03-20 02:27:34[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 31 = 0.139138 
+2017-03-20 02:56:31[torch_benchmarks]:  Time taken for 1 epoch = 1736576.3249397ms, time taken to learn 1 sample = 52.331735925136ms 
+2017-03-20 02:56:31[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 32 = 0.143607 
+2017-03-20 03:25:28[torch_benchmarks]:  Time taken for 1 epoch = 1737286.1199379ms, time taken to learn 1 sample = 52.353125600829ms 
+2017-03-20 03:25:28[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 33 = 0.135700 
+2017-03-20 03:54:24[torch_benchmarks]:  Time taken for 1 epoch = 1736185.7690811ms, time taken to learn 1 sample = 52.319966522454ms 
+2017-03-20 03:54:24[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 34 = 0.148197 
+2017-03-20 04:23:22[torch_benchmarks]:  Time taken for 1 epoch = 1737430.4189682ms, time taken to learn 1 sample = 52.357474052803ms 
+2017-03-20 04:23:22[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 35 = 0.142487 
+2017-03-20 04:52:19[torch_benchmarks]:  Time taken for 1 epoch = 1737723.8368988ms, time taken to learn 1 sample = 52.366316203556ms 
+2017-03-20 04:52:19[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 36 = 0.139906 
+2017-03-20 05:21:16[torch_benchmarks]:  Time taken for 1 epoch = 1736859.8530293ms, time taken to learn 1 sample = 52.340280045481ms 
+2017-03-20 05:21:16[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 37 = 0.137108 
+2017-03-20 05:50:35[torch_benchmarks]:  Time taken for 1 epoch = 1758539.4229889ms, time taken to learn 1 sample = 52.993593990745ms 
+2017-03-20 05:50:35[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 38 = 0.137436 
+2017-03-20 06:20:02[torch_benchmarks]:  Time taken for 1 epoch = 1766808.8750839ms, time taken to learn 1 sample = 53.242793969501ms 
+2017-03-20 06:20:02[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 39 = 0.131968 
+2017-03-20 06:49:29[torch_benchmarks]:  Time taken for 1 epoch = 1767888.835907ms, time taken to learn 1 sample = 53.275338594111ms 
+2017-03-20 06:49:29[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 40 = 0.136347 
+2017-03-20 07:18:53[torch_benchmarks]:  Time taken for 1 epoch = 1763856.1971188ms, time taken to learn 1 sample = 53.153815004784ms 
+2017-03-20 07:18:53[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 41 = 0.139830 
+2017-03-20 07:48:16[torch_benchmarks]:  Time taken for 1 epoch = 1763045.9952354ms, time taken to learn 1 sample = 53.129399567124ms 
+2017-03-20 07:48:16[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 42 = 0.135641 
+2017-03-20 08:17:45[torch_benchmarks]:  Time taken for 1 epoch = 1768700.9699345ms, time taken to learn 1 sample = 53.299812256945ms 
+2017-03-20 08:17:45[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 43 = 0.134448 
+2017-03-20 08:47:07[torch_benchmarks]:  Time taken for 1 epoch = 1761911.2689495ms, time taken to learn 1 sample = 53.095204585026ms 
+2017-03-20 08:47:07[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 44 = 0.127803 
+2017-03-20 09:16:34[torch_benchmarks]:  Time taken for 1 epoch = 1767075.1430988ms, time taken to learn 1 sample = 53.250817957414ms 
+2017-03-20 09:16:34[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 45 = 0.136545 
+2017-03-20 09:46:03[torch_benchmarks]:  Time taken for 1 epoch = 1769360.8570099ms, time taken to learn 1 sample = 53.319697957145ms 
+2017-03-20 09:46:03[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 46 = 0.128765 
+2017-03-20 10:15:40[torch_benchmarks]:  Time taken for 1 epoch = 1776436.6929531ms, time taken to learn 1 sample = 53.53292830741ms 
+2017-03-20 10:15:40[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 47 = 0.134428 
+2017-03-20 10:45:15[torch_benchmarks]:  Time taken for 1 epoch = 1774985.5298996ms, time taken to learn 1 sample = 53.489197501796ms 
+2017-03-20 10:45:15[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 48 = 0.131741 
+2017-03-20 11:14:53[torch_benchmarks]:  Time taken for 1 epoch = 1778176.1729717ms, time taken to learn 1 sample = 53.585347546159ms 
+2017-03-20 11:14:53[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 49 = 0.139443 
+2017-03-20 11:44:30[torch_benchmarks]:  Time taken for 1 epoch = 1776998.7959862ms, time taken to learn 1 sample = 53.549867285022ms 
+2017-03-20 11:44:30[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 50 = 0.129037 
+2017-03-20 12:14:05[torch_benchmarks]:  Time taken for 1 epoch = 1775325.4048824ms, time taken to learn 1 sample = 53.499439636042ms 
+2017-03-20 12:14:05[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 51 = 0.130263 
+2017-03-20 12:43:38[torch_benchmarks]:  Time taken for 1 epoch = 1772627.4471283ms, time taken to learn 1 sample = 53.418136666113ms 
+2017-03-20 12:43:38[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 52 = 0.129093 
+2017-03-20 13:13:19[torch_benchmarks]:  Time taken for 1 epoch = 1780919.3890095ms, time taken to learn 1 sample = 53.668014374683ms 
+2017-03-20 13:13:19[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 53 = 0.139288 
+2017-03-20 13:43:00[torch_benchmarks]:  Time taken for 1 epoch = 1781235.2380753ms, time taken to learn 1 sample = 53.677532487803ms 
+2017-03-20 13:43:00[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 54 = 0.130406 
+2017-03-20 14:12:43[torch_benchmarks]:  Time taken for 1 epoch = 1782663.079977ms, time taken to learn 1 sample = 53.720560510398ms 
+2017-03-20 14:12:43[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 55 = 0.127894 
+2017-03-20 14:42:22[torch_benchmarks]:  Time taken for 1 epoch = 1778940.7398701ms, time taken to learn 1 sample = 53.608387773327ms 
+2017-03-20 14:42:22[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 56 = 0.125289 
+2017-03-20 15:12:00[torch_benchmarks]:  Time taken for 1 epoch = 1778665.0400162ms, time taken to learn 1 sample = 53.6000795569ms 
+2017-03-20 15:12:00[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 57 = 0.139365 
+2017-03-20 15:41:43[torch_benchmarks]:  Time taken for 1 epoch = 1782228.2419205ms, time taken to learn 1 sample = 53.707456663466ms 
+2017-03-20 15:41:43[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 58 = 0.142945 
+2017-03-20 16:11:24[torch_benchmarks]:  Time taken for 1 epoch = 1781082.5901031ms, time taken to learn 1 sample = 53.672932440428ms 
+2017-03-20 16:11:24[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 59 = 0.125274 
+2017-03-20 16:41:01[torch_benchmarks]:  Time taken for 1 epoch = 1777105.9660912ms, time taken to learn 1 sample = 53.553096856652ms 
+2017-03-20 16:41:01[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 60 = 0.125280 
+2017-03-20 17:10:42[torch_benchmarks]:  Time taken for 1 epoch = 1781354.2568684ms, time taken to learn 1 sample = 53.681119119707ms 
+2017-03-20 17:10:42[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 61 = 0.126766 
+2017-03-20 17:40:28[torch_benchmarks]:  Time taken for 1 epoch = 1785375.8158684ms, time taken to learn 1 sample = 53.802308819563ms 
+2017-03-20 17:40:28[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 62 = 0.130518 
+2017-03-20 18:10:18[torch_benchmarks]:  Time taken for 1 epoch = 1790352.7219296ms, time taken to learn 1 sample = 53.952287907713ms 
+2017-03-20 18:10:18[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 63 = 0.131928 
+2017-03-20 18:40:00[torch_benchmarks]:  Time taken for 1 epoch = 1782046.3969707ms, time taken to learn 1 sample = 53.70197676503ms 
+2017-03-20 18:40:00[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 64 = 0.120862 
+2017-03-20 19:09:43[torch_benchmarks]:  Time taken for 1 epoch = 1783097.6908207ms, time taken to learn 1 sample = 53.733657510267ms 
+2017-03-20 19:09:43[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 65 = 0.131255 
+2017-03-20 19:39:26[torch_benchmarks]:  Time taken for 1 epoch = 1783255.5561066ms, time taken to learn 1 sample = 53.738414781418ms 
+2017-03-20 19:39:26[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 66 = 0.117226 
+2017-03-20 20:09:09[torch_benchmarks]:  Time taken for 1 epoch = 1782691.6189194ms, time taken to learn 1 sample = 53.721420531563ms 
+2017-03-20 20:09:09[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 67 = 0.130486 
+2017-03-20 20:38:48[torch_benchmarks]:  Time taken for 1 epoch = 1778783.1938267ms, time taken to learn 1 sample = 53.603640122549ms 
+2017-03-20 20:38:48[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 68 = 0.125808 
+2017-03-20 21:08:19[torch_benchmarks]:  Time taken for 1 epoch = 1771729.1960716ms, time taken to learn 1 sample = 53.391067866189ms 
+2017-03-20 21:08:19[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 69 = 0.123941 
+2017-03-20 21:37:57[torch_benchmarks]:  Time taken for 1 epoch = 1777130.3260326ms, time taken to learn 1 sample = 53.553830943607ms 
+2017-03-20 21:37:57[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 70 = 0.125535 
+2017-03-20 22:07:43[torch_benchmarks]:  Time taken for 1 epoch = 1785949.8090744ms, time taken to learn 1 sample = 53.819606107594ms 
+2017-03-20 22:07:43[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 71 = 0.121911 
+2017-03-20 22:37:22[torch_benchmarks]:  Time taken for 1 epoch = 1779127.6841164ms, time taken to learn 1 sample = 53.61402133909ms 
+2017-03-20 22:37:22[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 72 = 0.130751 
+2017-03-20 23:06:54[torch_benchmarks]:  Time taken for 1 epoch = 1772648.704052ms, time taken to learn 1 sample = 53.418777243611ms 
+2017-03-20 23:06:54[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 73 = 0.124297 
+2017-03-20 23:36:31[torch_benchmarks]:  Time taken for 1 epoch = 1776344.4988728ms, time taken to learn 1 sample = 53.530150038355ms 
+2017-03-20 23:36:31[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 74 = 0.124212 
+2017-03-21 00:07:06[torch_benchmarks]:  Time taken for 1 epoch = 1835141.630888ms, time taken to learn 1 sample = 55.30200189513ms 
+2017-03-21 00:07:06[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 75 = 0.113901 
+2017-03-21 00:38:09[torch_benchmarks]:  Time taken for 1 epoch = 1863084.6869946ms, time taken to learn 1 sample = 56.144066025631ms 
+2017-03-21 00:38:09[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 76 = 0.125307 
+2017-03-21 01:08:43[torch_benchmarks]:  Time taken for 1 epoch = 1834046.6470718ms, time taken to learn 1 sample = 55.269004552551ms 
+2017-03-21 01:08:43[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 77 = 0.118156 
+2017-03-21 01:38:19[torch_benchmarks]:  Time taken for 1 epoch = 1776508.5890293ms, time taken to learn 1 sample = 53.535094896014ms 
+2017-03-21 01:38:19[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 78 = 0.120783 
+2017-03-21 02:07:54[torch_benchmarks]:  Time taken for 1 epoch = 1774812.3679161ms, time taken to learn 1 sample = 53.483979264589ms 
+2017-03-21 02:07:54[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 79 = 0.124562 
+2017-03-21 02:37:32[torch_benchmarks]:  Time taken for 1 epoch = 1777858.5009575ms, time taken to learn 1 sample = 53.575774498478ms 
+2017-03-21 02:37:32[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 80 = 0.118797 
+2017-03-21 03:07:11[torch_benchmarks]:  Time taken for 1 epoch = 1778997.5540638ms, time taken to learn 1 sample = 53.610099869329ms 
+2017-03-21 03:07:11[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 81 = 0.121870 
+2017-03-21 03:36:45[torch_benchmarks]:  Time taken for 1 epoch = 1773741.6460514ms, time taken to learn 1 sample = 53.451713056033ms 
+2017-03-21 03:36:45[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 82 = 0.118251 
+2017-03-21 04:06:18[torch_benchmarks]:  Time taken for 1 epoch = 1773384.1280937ms, time taken to learn 1 sample = 53.440939250655ms 
+2017-03-21 04:06:18[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 83 = 0.125088 
+2017-03-21 04:35:56[torch_benchmarks]:  Time taken for 1 epoch = 1777305.6738377ms, time taken to learn 1 sample = 53.559115050556ms 
+2017-03-21 04:35:56[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 84 = 0.115644 
+2017-03-21 05:04:46[torch_benchmarks]:  Time taken for 1 epoch = 1730930.4301739ms, time taken to learn 1 sample = 52.161596859145ms 
+2017-03-21 05:04:46[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 85 = 0.121236 
+2017-03-21 05:33:31[torch_benchmarks]:  Time taken for 1 epoch = 1724478.7290096ms, time taken to learn 1 sample = 51.967174813453ms 
+2017-03-21 05:33:31[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 86 = 0.123469 
+2017-03-21 06:02:28[torch_benchmarks]:  Time taken for 1 epoch = 1737120.3761101ms, time taken to learn 1 sample = 52.348130909778ms 
+2017-03-21 06:02:28[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 87 = 0.121200 
+2017-03-21 06:32:02[torch_benchmarks]:  Time taken for 1 epoch = 1774114.8338318ms, time taken to learn 1 sample = 53.462959071594ms 
+2017-03-21 06:32:02[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 88 = 0.120337 
+2017-03-21 07:01:30[torch_benchmarks]:  Time taken for 1 epoch = 1768217.2830105ms, time taken to learn 1 sample = 53.285236349159ms 
+2017-03-21 07:01:30[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 89 = 0.125646 
+2017-03-21 07:30:59[torch_benchmarks]:  Time taken for 1 epoch = 1768880.614996ms, time taken to learn 1 sample = 53.305225861739ms 
+2017-03-21 07:30:59[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 90 = 0.117548 
+2017-03-21 08:00:27[torch_benchmarks]:  Time taken for 1 epoch = 1767821.8300343ms, time taken to learn 1 sample = 53.273319371813ms 
+2017-03-21 08:00:27[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 91 = 0.114230 
+2017-03-21 08:29:58[torch_benchmarks]:  Time taken for 1 epoch = 1771002.5730133ms, time taken to learn 1 sample = 53.369171076823ms 
+2017-03-21 08:29:58[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 92 = 0.121599 
+2017-03-21 08:59:24[torch_benchmarks]:  Time taken for 1 epoch = 1765771.4622021ms, time taken to learn 1 sample = 53.211531527304ms 
+2017-03-21 08:59:24[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 93 = 0.111946 
+2017-03-21 09:28:49[torch_benchmarks]:  Time taken for 1 epoch = 1765424.6149063ms, time taken to learn 1 sample = 53.201079282374ms 
+2017-03-21 09:28:49[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 94 = 0.115128 
+2017-03-21 09:58:19[torch_benchmarks]:  Time taken for 1 epoch = 1769278.7189484ms, time taken to learn 1 sample = 53.317222726265ms 
+2017-03-21 09:58:19[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 95 = 0.117910 
+2017-03-21 10:27:58[torch_benchmarks]:  Time taken for 1 epoch = 1778974.9860764ms, time taken to learn 1 sample = 53.609419782918ms 
+2017-03-21 10:27:58[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 96 = 0.117206 
+2017-03-21 10:57:27[torch_benchmarks]:  Time taken for 1 epoch = 1769341.2511349ms, time taken to learn 1 sample = 53.319107134007ms 
+2017-03-21 10:57:27[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 97 = 0.111340 
+2017-03-21 11:27:04[torch_benchmarks]:  Time taken for 1 epoch = 1776588.8478756ms, time taken to learn 1 sample = 53.537513496733ms 
+2017-03-21 11:27:04[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 98 = 0.110418 
+2017-03-21 11:56:59[torch_benchmarks]:  Time taken for 1 epoch = 1795371.9639778ms, time taken to learn 1 sample = 54.103542791038ms 
+2017-03-21 11:56:59[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 99 = 0.121795 
+2017-03-21 12:28:00[torch_benchmarks]:  Time taken for 1 epoch = 1861582.6098919ms, time taken to learn 1 sample = 56.0988009249ms 
+2017-03-21 12:28:00[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 100 = 0.113361 
+2017-03-21 12:59:10[torch_benchmarks]:  Time taken for 1 epoch = 1869228.3029556ms, time taken to learn 1 sample = 56.32920392224ms 
+2017-03-21 12:59:10[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 101 = 0.106745 
+2017-03-21 13:28:37[torch_benchmarks]:  Time taken for 1 epoch = 1767276.9789696ms, time taken to learn 1 sample = 53.256900282352ms 
+2017-03-21 13:28:37[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 102 = 0.117109 
+2017-03-21 13:56:45[torch_benchmarks]:  Time taken for 1 epoch = 1688296.4770794ms, time taken to learn 1 sample = 50.876822477079ms 
+2017-03-21 13:56:45[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 103 = 0.114583 
+2017-03-21 14:24:50[torch_benchmarks]:  Time taken for 1 epoch = 1684728.0449867ms, time taken to learn 1 sample = 50.769287758761ms 
+2017-03-21 14:24:50[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 104 = 0.109540 
+2017-03-21 14:54:23[torch_benchmarks]:  Time taken for 1 epoch = 1773485.5129719ms, time taken to learn 1 sample = 53.443994484447ms 
+2017-03-21 14:54:23[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 105 = 0.110336 
+2017-03-21 15:24:04[torch_benchmarks]:  Time taken for 1 epoch = 1780526.7560482ms, time taken to learn 1 sample = 53.656182378502ms 
+2017-03-21 15:24:04[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 106 = 0.110128 
+2017-03-21 15:53:44[torch_benchmarks]:  Time taken for 1 epoch = 1780333.0998421ms, time taken to learn 1 sample = 53.650346547796ms 
+2017-03-21 15:53:44[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 107 = 0.112545 
+2017-03-21 16:23:20[torch_benchmarks]:  Time taken for 1 epoch = 1776080.1520348ms, time taken to learn 1 sample = 53.522183945117ms 
+2017-03-21 16:23:20[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 108 = 0.115437 
+2017-03-21 16:53:11[torch_benchmarks]:  Time taken for 1 epoch = 1790939.8801327ms, time taken to learn 1 sample = 53.969981922995ms 
+2017-03-21 16:53:11[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 109 = 0.112264 
+2017-03-21 17:22:48[torch_benchmarks]:  Time taken for 1 epoch = 1776990.5841351ms, time taken to learn 1 sample = 53.549619820849ms 
+2017-03-21 17:22:48[torch_benchmarks]:  [0;31m<Train error> avgerage error at epoch 110 = 0.107598 
